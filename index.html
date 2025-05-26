@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Follow-Up Reminder</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Patient Follow-Up Form</h1>
+  <form id="appointmentForm">
+    <input type="text" id="name" placeholder="Patient Name" required />
+    <input type="tel" id="phone" placeholder="Phone Number" required />
+    <input type="date" id="date" required />
+    <button type="submit">Submit</button>
+  </form>
+
+  <p id="status"></p>
+
+  <script src="config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script src="scripts.js"></script>
+</body>
+</html>
