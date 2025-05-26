@@ -1,0 +1,35 @@
+import { useState } from 'react';
+import { View, TextInput, Button as RNButton, Platform } from 'react-native';
+import Label from './Label';
+import Input from './Input';
+import Button from './Button';
+import { cn } from '../lib/utils';
+
+export default function AppointmentForm({ onSubmit, initialData = {} }) {
+  const [title, setTitle] = useState(initialData.title || '');
+  const [date, setDate] = useState(initialData.date || '');
+
+  const handleSubmit = () => {
+    if (onSubmit) onSubmit({ title, date });
+    setTitle('');
+    setDate('');
+  };
+
+  return (
+    <View className={Platform.OS === 'web' ? cn('p-4') : undefined}>
+      <Label>Title</Label>
+      <Input value={title} onChangeText={setTitle} placeholder="Meeting with client" />
+
+      <Label>Date</Label>
+      <Input value={date} onChangeText={setDate} placeholder="2025-06-01" />
+
+      <View style={{ marginTop: 16 }}>
+        {Platform.OS === 'web' ? (
+          <Button onPress={handleSubmit}>Save Appointment</Button>
+        ) : (
+          <RNButton title="Save Appointment" onPress={handleSubmit} />
+        )}
+      </View>
+    </View>
+  );
+}
