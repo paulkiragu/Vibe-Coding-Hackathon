@@ -35,7 +35,7 @@ The form collects the patient's name, phone number, and preferred follow-up date
    cd patient-follow-up-app
    run index.html file
 
-## pitch deck link
+## pitch deck link https://www.canva.com/design/DAGkUMgUmGc/XDih7nCW0hqdY2quN-11RA/edit?utm_content=DAGkUMgUmGc&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 
 ##collaborators
 1.Paul Mburu
