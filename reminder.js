@@ -1,17 +1,21 @@
+require('dotenv').config(); // Load environment variables
 
-import { createClient } from '@supabase/supabase-js';
-import twilio from 'twilio';
+const { createClient } = require('@supabase/supabase-js');
+const twilio = require('twilio');
 
-// Supabase credentials
-const SUPABASE_URL = 'https://kluyhtskgcmufpkmdfsi.supabase.co';
-const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtsdXlodHNrZ2NtdWZwa21kZnNpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgyNDkzODEsImV4cCI6MjA2MzgyNTM4MX0.wneKpK4qPvG5GjuZ6gacQbqVj7NyBpI_lJgUloC90hw';
-const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+// Supabase setup
+const supabase = createClient(
+  process.env.SUPABASE_URL,
+  process.env.SUPABASE_KEY
+);
 
-// Twilio credentials
-const accountSid = 'ACa1941e8f75501af80cf748098c8da8c3';
-const authToken = '00744634abc9de199c02e153fd6d9b3c';
-const client = twilio(accountSid, authToken);
-const twilioNumber = '+17652912045';
+// Twilio setup
+const client = twilio(
+  process.env.TWILIO_ACCOUNT_SID,
+  process.env.TWILIO_AUTH_TOKEN
+);
+
+const twilioNumber = process.env.TWILIO_NUMBER;
 
 async function sendReminders() {
   const today = new Date().toISOString().split('T')[0];
@@ -22,12 +26,12 @@ async function sendReminders() {
     .eq('appointment_date', today);
 
   if (error) {
-    console.error('Supabase error:', error);
+    console.error('❌ Supabase error:', error);
     return;
   }
 
-  if (data.length === 0) {
-    console.log('No appointments today.');
+  if (!data.length) {
+    console.log('📭 No appointments today.');
     return;
   }
 
@@ -38,11 +42,11 @@ async function sendReminders() {
       await client.messages.create({
         body: message,
         from: twilioNumber,
-        to: patient.phone  
+        to: patient.phone
       });
       console.log(`✅ Reminder sent to ${patient.phone}`);
     } catch (err) {
-      console.error(`❌ Failed to send to ${patient.phone}`, err);
+      console.error(`❌ Failed to send to ${patient.phone}:`, err.message);
     }
   }
 }
