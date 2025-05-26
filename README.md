@@ -17,9 +17,6 @@ The form collects the patient's name, phone number, and preferred follow-up date
 - JavaScript (Vanilla)
 - [Supabase](https://supabase.io/) (Backend-as-a-Service)
 
-## 🖥️ Live Demo
-
-> _Add a Netlify/Vercel or GitHub Pages link here if deployed_
 
 ## 📁 Project Structure
 
@@ -34,6 +31,13 @@ The form collects the patient's name, phone number, and preferred follow-up date
 
 1. **Clone the repository**
 
-   git clone https://github.com/your-username/patient-follow-up-app.git
+   git clone https://github.com/paulkiragu/Vibe-Coding-Hackathon.git
    cd patient-follow-up-app
    run index.html file
+
+## pitch deck link
+
+##collaborators
+1.Paul Mburu
+2.victoria Mwende
+3.Joy Walukaya
