@@ -27,4 +27,7 @@ document.getElementById('appointmentForm').addEventListener('submit', async (e) 
     status.style.color = 'green';
     document.getElementById('appointmentForm').reset();
   }
+  setTimeout(() => {
+    status.textContent = '';
+  }, 2000);
 });
